@@ -9,15 +9,15 @@ oidc_provider = "github-actions"
 permissions_provider = "OpenID Connect (OIDC)"
 
 [dev.pipeline_bootstrap.parameters]
-pipeline_execution_role = "y"
-cloudformation_execution_role = "y"
-artifacts_bucket = ""
+pipeline_execution_role = "arn:aws:iam::324037309064:role/aws-sam-cli-managed-dev-pipel-PipelineExecutionRole-VPmliEVtv6hu"
+cloudformation_execution_role = "arn:aws:iam::324037309064:role/aws-sam-cli-managed-dev-p-CloudFormationExecutionRo-PTrmvXJULgqg"
+artifacts_bucket = "aws-sam-cli-managed-dev-pipeline-r-artifactsbucket-zuqb6raoo4ab"
 image_repository = ""
 region = "us-east-1"
 
 [prod.pipeline_bootstrap.parameters]
-pipeline_execution_role = "y"
-cloudformation_execution_role = "y"
-artifacts_bucket = ""
+pipeline_execution_role = "arn:aws:iam::324037309064:role/aws-sam-cli-managed-prod-pipe-PipelineExecutionRole-uqncBJkSiBDf"
+cloudformation_execution_role = "arn:aws:iam::324037309064:role/aws-sam-cli-managed-prod--CloudFormationExecutionRo-kYAWW7GHjI4p"
+artifacts_bucket = "aws-sam-cli-managed-prod-pipeline--artifactsbucket-mxflz33zzssb"
 image_repository = ""
 region = "us-east-1"
