@@ -14,7 +14,7 @@ env:
   TESTING_STACK_NAME: sam-app-dev
   TESTING_PIPELINE_EXECUTION_ROLE: y
   TESTING_CLOUDFORMATION_EXECUTION_ROLE: y
-  TESTING_ARTIFACTS_BUCKET:
+  TESTING_ARTIFACTS_BUCKET: 
   # If there are functions with "Image" PackageType in your template,
   # uncomment the line below and add "--image-repository ${TESTING_IMAGE_REPOSITORY}" to
   # testing "sam package" and "sam deploy" commands.
@@ -29,7 +29,6 @@ env:
   # prod "sam package" and "sam deploy" commands.
   # PROD_IMAGE_REPOSITORY = '0123456789.dkr.ecr.region.amazonaws.com/repository-name'
   PROD_REGION: us-east-1
-  SOURCE_ACCOUNT_ID: 324037309064
 
 permissions:
   id-token: write
@@ -60,7 +59,6 @@ jobs:
           role-session-name: testing-packaging
           role-duration-seconds: 3600
           role-skip-session-tagging: true
-          source-account: ${{ env.SOURCE_ACCOUNT_ID }}
 
       - name: Delete feature branch stack
         env:
@@ -94,7 +92,6 @@ jobs:
           role-session-name: feature-deployment
           role-duration-seconds: 3600
           role-skip-session-tagging: true
-          source-account: ${{ env.SOURCE_ACCOUNT_ID }}
 
       - name: Deploy to feature stack in the testing account
         shell: bash
@@ -127,7 +124,6 @@ jobs:
           role-session-name: testing-packaging
           role-duration-seconds: 3600
           role-skip-session-tagging: true
-          source-account: ${{ env.SOURCE_ACCOUNT_ID }}
 
       - name: Upload artifacts to testing artifact buckets
         run: |
@@ -149,7 +145,6 @@ jobs:
           role-session-name: prod-packaging
           role-duration-seconds: 3600
           role-skip-session-tagging: true
-          source-account: ${{ env.SOURCE_ACCOUNT_ID }}
 
       - name: Upload artifacts to production artifact buckets
         run: |
@@ -184,7 +179,6 @@ jobs:
           role-session-name: testing-deployment
           role-duration-seconds: 3600
           role-skip-session-tagging: true
-          source-account: ${{ env.SOURCE_ACCOUNT_ID }}
 
       - name: Deploy to testing account
         run: |
@@ -229,7 +223,6 @@ jobs:
           role-session-name: prod-deployment
           role-duration-seconds: 3600
           role-skip-session-tagging: true
-          source-account: ${{ env.SOURCE_ACCOUNT_ID }}
 
       - name: Deploy to production account
         run: |
